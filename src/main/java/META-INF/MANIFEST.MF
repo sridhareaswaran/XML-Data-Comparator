@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.sri.comparator.DataComp
+SplashScreen-Image: com/res/compare.png
+Created-By: Sridhar Easwaran
