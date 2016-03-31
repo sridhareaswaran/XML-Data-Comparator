@@ -1,0 +1,38 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'src/lib', includes: ['*.jar'])
+}
+
+jar {
+
+    //from configurations.compile.collect { fileTree(dir: 'src/lib') }
+    from {
+
+        configurations.runtime.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+    baseName = 'DataComparator'
+    version = '2.0'
+    manifest
+            {
+        attributes( "Main-Class" : "com.sri.comparator.DataComp",
+                    "Created-By" : "Sridhar Easwaran",
+                    "SplashScreen-Image" : "com/sri/res/compare.png"
+                  )
+
+    }
+
+}
